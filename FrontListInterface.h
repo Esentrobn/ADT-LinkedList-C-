@@ -1,0 +1,47 @@
+
+
+/** Interface for the ADT sorted list
+ @file FrontListInterface.h */
+ 
+#ifndef _FRONT_LIST_INTERFACE
+#define _FRONT_LIST_INTERFACE
+
+template<class ItemType>
+class FrontListInterface
+{
+public:
+   /** Inserts an entry into the front of the list
+    @pre  None.
+    @post  newEntry is in the list, and the list is sorted.
+    @param newEntry  The entry to insert into the sorted list. */
+   virtual void insertFront(const ItemType& newEntry) = 0;
+   
+   /** Removes the first or only occurrence of the given entry from this
+       sorted list.
+    @pre  None.
+    @post  If the removal is successful, the first node of the list is removed and true is returned
+	   otherwise this method will return a false
+    @param anEntry  The entry to remove.
+    @return  True if removal is successful, or false if not. */
+   virtual bool removeFront(int position) = 0;
+   
+   
+   // The following methods are the same as those given in ListInterface
+   // in Listing 8-1 of Chapter 8 and are completely specified there.
+   
+   /** Sees whether this list is empty. */
+   virtual bool isEmpty() const = 0;
+   
+   /** Gets the current number of entries in this list. */
+   virtual int getLength() const = 0;
+   
+   /** Removes the entry at a given position from this list. */
+   virtual bool remove(int position) = 0;
+   
+   /** Removes all entries from this list. */
+   virtual void clear() = 0;
+   
+   /** Gets the entry at the front of this list. */
+   virtual ItemType getEntry(int position) const = 0;
+}; // end SortedListInterface
+#endif

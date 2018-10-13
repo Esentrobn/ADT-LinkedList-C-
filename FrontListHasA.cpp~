@@ -1,0 +1,92 @@
+
+
+#include "FrontListHasA.h"  // Header file
+#include "LinkedList.h"
+#include <cassert>
+#include <cmath>
+  
+template<class ItemType>
+FrontListHasA<ItemType>::FrontListHasA()
+{
+   listPtr = new LinkedList<ItemType>();
+}  // end default constructor
+
+template<class ItemType>
+FrontListHasA<ItemType>::FrontListHasA(const FrontListHasA<ItemType>& fList) 
+{
+	// First, create our own list
+	listPtr = new LinkedList<ItemType>();
+	
+	// Then add items to it using public methods
+	for(int position = 1; position <= fList.getLength(); position++)
+	{
+		listPtr->insert(position, fList.getEntry(position));
+	}  // end for	
+}  // end copy constructor
+
+template<class ItemType>
+FrontListHasA<ItemType>::~FrontListHasA()
+{
+   clear();
+}  // end destructor
+
+template<class ItemType>
+void FrontListHasA<ItemType>::insertFront(const ItemType& newEntry)
+{
+	listPtr->insert(1, newEntry);
+}  // end insertSorted
+
+template<class ItemType>
+bool FrontListHasA<ItemType>::removeFront(int position)
+{
+   
+   bool ableToRemove = false;
+   if(position != 1)
+      return ableToRemove;
+   else if(!isEmpty())
+   {
+      ableToRemove = true;
+      if (ableToRemove)
+      {
+         listPtr->remove(1);
+      }  // end if
+   }  // end if
+
+   return ableToRemove;
+}  // end removeSorted
+
+
+//=====================
+// List operations:
+
+template<class ItemType>
+bool FrontListHasA<ItemType>::remove(int position)
+{
+   return listPtr->remove(position);
+}  // end remove
+
+template<class ItemType>
+void FrontListHasA<ItemType>::clear()
+{
+   listPtr->clear();
+}  // end clear
+
+template<class ItemType>
+ItemType FrontListHasA<ItemType>::getEntry(int position) const throw(PrecondViolatedExcep)
+{
+   return listPtr->getEntry(position);
+}  // end getEntry
+
+template<class ItemType>
+bool FrontListHasA<ItemType>::isEmpty() const
+{
+   return listPtr->isEmpty();
+}  // end isEmpty
+
+template<class ItemType>
+int FrontListHasA<ItemType>::getLength() const
+{
+   return listPtr->getLength();
+}  // end getLength
+
+//  End of implementation file.
